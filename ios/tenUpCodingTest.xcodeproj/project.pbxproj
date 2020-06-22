@@ -194,7 +194,6 @@
 				8343D2510B095B81D5E288FE /* Pods-tenUpCodingTest-tvOSTests.debug.xcconfig */,
 				76757D69C51D15D37AB4F136 /* Pods-tenUpCodingTest-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

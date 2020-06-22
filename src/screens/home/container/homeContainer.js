@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import HomeScreen from '../screen/homeScreen';
 import { SafeAreaView } from 'react-native';
+import { attemptLogin } from '../../../redux/actions/user';
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -12,15 +13,21 @@ class HomeContainer extends Component {
   render() {
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <HomeScreen />
+        <HomeScreen {...this.props} />
       </SafeAreaView>
     );
   }
 }
 
-// const mapStateToProps = state => ({
-//   user: state.user.user,
-// });
+const mapStateToProps = (state) => ({
+  user: state.user.username,
+  loading: state.user.loading,
+  error: state.user.error,
+});
 
-// export default connect(mapStateToProps)(HomeContainer);
-export default HomeContainer;
+const mapDispatchToProps = (dispatch) => ({
+  attemptLogin: (username, password, onSuccess) =>
+    dispatch(attemptLogin(username, password, onSuccess)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

@@ -3,10 +3,12 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
 } from '../constants/constants';
+
 const defaultState = {
   username: null,
   loading: false,
   error: true,
+  jwtToken: null,
 };
 
 // TODO: start recording errors from login journey for clearer error messages

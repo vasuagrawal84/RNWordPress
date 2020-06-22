@@ -34,12 +34,22 @@ class HomeScreen extends Component {
     this.state = { username: null, password: null };
   }
 
-  signIn = () => {
-    Keyboard.dismiss();
-
+  onSuccessfulLogin = () => {
+    console.warn('!!!here');
     const { navigation } = this.props;
     navigation.navigate(ROUTES.SCREENS.MAIN);
-    // TODO: call sign in redux action
+  };
+
+  signIn = async () => {
+    Keyboard.dismiss();
+
+    const { attemptLogin } = this.props;
+
+    await attemptLogin(
+      this.state.username,
+      this.state.password,
+      this.onSuccessfulLogin,
+    );
   };
 
   render() {

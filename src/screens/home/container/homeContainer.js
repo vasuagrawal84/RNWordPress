@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeScreen from '../screen/homeScreen';
 import { SafeAreaView } from 'react-native';
-import { attemptLogin } from '../../../redux/actions/user';
+import { attemptLogin, verifyLogin } from '../../../redux/actions/user';
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -28,6 +28,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   attemptLogin: (username, password, onSuccess) =>
     dispatch(attemptLogin(username, password, onSuccess)),
+  isLoggedIn: (onSuccess) => {
+    dispatch(verifyLogin(onSuccess));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

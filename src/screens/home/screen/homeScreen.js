@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingVertical: 40,
   },
+  loading: {
+    fontSize: 15,
+    alignSelf: 'center',
+  },
 });
 
 class HomeScreen extends Component {
@@ -34,8 +38,11 @@ class HomeScreen extends Component {
     this.state = { username: null, password: null };
   }
 
+  async componentDidMount() {
+    await this.props.isLoggedIn(this.onSuccessfulLogin);
+  }
+
   onSuccessfulLogin = () => {
-    console.warn('!!!here');
     const { navigation } = this.props;
     navigation.navigate(ROUTES.SCREENS.MAIN);
   };
@@ -56,33 +63,39 @@ class HomeScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>10Up Engineering Test!</Text>
-        <TextInput
-          style={styles.textInput}
-          underlineColorAndroid="transparent"
-          placeholder="Email"
-          placeholderTextColor={'grey'}
-          value={this.state.username}
-          autoCapitalize="none"
-          onChangeText={(username) => this.setState({ username })}
-          textContentType="username"
-          keyboardType="default"
-          returnKeyType="next"
-          enablesReturnKeyAutomatically
-          onSubmitEditing={() => {
-            this.passwordInput.focus();
-          }}
-          blurOnSubmit={false}
-        />
-        <PasswordInput
-          style={styles.textInput}
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
-          ref={(input) => {
-            this.passwordInput = input;
-          }}
-          onSubmitEditing={this.signIn}
-        />
-        <Button onPress={this.signIn} text="Login" />
+        {this.props.loading ? (
+          <Text style={styles.loading}>Loading...</Text>
+        ) : (
+          <View>
+            <TextInput
+              style={styles.textInput}
+              underlineColorAndroid="transparent"
+              placeholder="Email"
+              placeholderTextColor={'grey'}
+              value={this.state.username}
+              autoCapitalize="none"
+              onChangeText={(username) => this.setState({ username })}
+              textContentType="username"
+              keyboardType="default"
+              returnKeyType="next"
+              enablesReturnKeyAutomatically
+              onSubmitEditing={() => {
+                this.passwordInput.focus();
+              }}
+              blurOnSubmit={false}
+            />
+            <PasswordInput
+              style={styles.textInput}
+              value={this.state.password}
+              onChangeText={(password) => this.setState({ password })}
+              ref={(input) => {
+                this.passwordInput = input;
+              }}
+              onSubmitEditing={this.signIn}
+            />
+            <Button onPress={this.signIn} text="Login" />
+          </View>
+        )}
       </View>
     );
   }

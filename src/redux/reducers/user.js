@@ -2,12 +2,13 @@ import {
   LOGIN_LOADING,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  LOGIN_VERIFICATION_ERROR,
 } from '../constants/constants';
 
 const defaultState = {
   username: null,
   loading: false,
-  error: true,
+  error: false,
   jwtToken: null,
 };
 
@@ -19,12 +20,20 @@ export default (previousState = defaultState, action) => {
       return {
         ...previousState,
         loading: true,
+        error: false,
       };
     case LOGIN_SUCCESS:
       return {
         ...previousState,
         loading: false,
         username: action.username,
+        jwtToken: action.jwtToken,
+      };
+    case LOGIN_VERIFICATION_ERROR:
+      return {
+        ...previousState,
+        loading: false,
+        error: false,
       };
     case LOGIN_ERROR:
       return {

@@ -12,7 +12,7 @@ const loginEndpoint = 'https://js1.10up.com/wp-json/jwt-auth/v1/token';
 const validateUserEndpoint =
   'https://js1.10up.com/wp-json/jwt-auth/v1/token/validate';
 
-export const attemptLogin = (username, password, onSuccess) => {
+export const attemptLogin = (username, password, onSuccess, onError) => {
   return async (dispatch, getState) => {
     dispatch({
       type: LOGIN_LOADING,
@@ -30,6 +30,7 @@ export const attemptLogin = (username, password, onSuccess) => {
 
       onSuccess();
     } catch (err) {
+      onError(err);
       dispatch({
         type: LOGIN_ERROR,
       });

@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import HTMLWrapper from '../../components/html/htmlWrapper';
+import HTMLWrapper from '../html/htmlWrapper';
 
 const itemWidth = Dimensions.get('window').width * 0.9;
 
@@ -37,7 +37,30 @@ const styles = StyleSheet.create({
   },
 });
 
-const BlogItem = ({ id, title, author, titleImage, excerpt, onPress }) => {
+interface Content {
+  rendered: string;
+  protected: boolean;
+}
+
+export interface Props {
+  id: number | string;
+  author: number | string;
+  titleImage: string;
+  excerpt: Content;
+  title: Content;
+  onPress: Function;
+}
+
+export const BlogItem: React.FC<Props> = ({
+  id,
+  title,
+  author,
+  titleImage,
+  excerpt,
+  onPress,
+}) => {
+  // TODO: extract first image from html to use for titleImage
+
   return (
     <TouchableOpacity onPress={() => onPress(id)}>
       <View style={styles.container}>

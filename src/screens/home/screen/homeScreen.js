@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TextInput, Text, Keyboard } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Text,
+  Keyboard,
+  Alert,
+} from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { Button, PasswordInput } from '../../../components';
 import ROUTES from '../../../constants/routeNames';
@@ -50,6 +57,10 @@ class HomeScreen extends Component {
     navigation.navigate(ROUTES.SCREENS.MAIN);
   };
 
+  showSignInErrorAlert = () => {
+    Alert.alert('Sorry, login failed', null, ['Try Again']);
+  };
+
   signIn = async () => {
     Keyboard.dismiss();
 
@@ -59,6 +70,7 @@ class HomeScreen extends Component {
       this.state.username,
       this.state.password,
       this.onSuccessfulLogin,
+      this.showSignInErrorAlert,
     );
   };
 

@@ -17,13 +17,15 @@ OR
 - Any pages returned by the Pages API are shown on the settings tab
 - User can click and view these pages
 
-## Libs
+## Libraries
 - react-navigation - used for routing/navigation
 - react-native-render-html - used for rendering HTML
 - redux-thunk - state management with asyc actions which would help with server side rendering if needed (could have used sagas too)
+- react-native-keychain - used to store jwt token and other sensitive information
 
 ## Next steps
-- Add Typescipt 
+- Change to using React.PureComponents or functional components for performance optimisation
+- Finish conversion to typescipt
 - Utilise selectors in redux
 - Use action creators to reduce duplication of network call code
 - Implement caching for network calls and handling token expiry

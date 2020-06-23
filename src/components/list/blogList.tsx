@@ -2,7 +2,12 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import BlogItem from './blogItem';
 
-const BlogList = ({ blogsArray, onBlogSelect }) => {
+export interface Props {
+  blogsArray: Array<any>;
+  onBlogSelect: Function;
+}
+
+const BlogList: React.FC<Props> = ({ blogsArray, onBlogSelect }) => {
   return (
     <FlatList
       data={blogsArray}

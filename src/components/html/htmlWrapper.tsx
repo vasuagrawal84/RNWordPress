@@ -11,7 +11,11 @@ const tagStyles = {
   ul: { marginTop: 30 },
 };
 
-const HTMLWrapper = ({ htmlContent }) => {
+export interface Props {
+  htmlContent: any;
+}
+
+const HTMLWrapper: React.FC<Props> = (props) => {
   const openLink = async (event, href) => {
     const supported = await Linking.canOpenURL(href);
     supported && Linking.openURL(href);
@@ -29,7 +33,7 @@ const HTMLWrapper = ({ htmlContent }) => {
 
   return (
     <HTML
-      html={htmlContent}
+      html={props.htmlContent}
       imagesMaxWidth={Dimensions.get('window').width}
       ignoreNodesFunction={removeWordPressTags}
       tagsStyles={tagStyles}

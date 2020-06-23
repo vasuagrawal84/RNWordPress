@@ -26,8 +26,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  attemptLogin: (username, password, onSuccess) =>
-    dispatch(attemptLogin(username, password, onSuccess)),
+  attemptLogin: (username, password, onSuccess, onError) =>
+    dispatch(attemptLogin(username, password, onSuccess, onError)),
   isLoggedIn: (onSuccess) => {
     dispatch(verifyLogin(onSuccess));
   },

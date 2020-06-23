@@ -2,7 +2,7 @@ import { createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { default as ROUTES } from '../constants/routeNames';
-import { Home, Main, Blog, Settings, Privacy, About } from '../screens';
+import { Home, Main, Blog, Settings } from '../screens';
 
 const blogsStack = createStackNavigator(
   {
@@ -41,10 +41,20 @@ const settingsStack = createStackNavigator({
   },
 });
 
-const tabNav = createBottomTabNavigator({
-  '10Up': { screen: blogsStack },
-  Settings: { screen: settingsStack },
-});
+const tabNav = createBottomTabNavigator(
+  {
+    Blogs: { screen: blogsStack },
+    Pages: { screen: settingsStack },
+  },
+  {
+    tabBarOptions: {
+      inactiveBackgroundColor: 'white',
+      activeBackgroundColor: '#001B55',
+      inactiveTintColor: '#001B55',
+      activeTintColor: 'white',
+    },
+  },
+);
 
 export default createSwitchNavigator({
   [ROUTES.SCREENS.HOME]: {

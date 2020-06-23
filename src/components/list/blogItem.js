@@ -25,10 +25,15 @@ const styles = StyleSheet.create({
     width: itemWidth,
     height: (itemWidth / 16) * 9,
     alignSelf: 'center',
+    borderRadius: 10,
   },
   author: {
     paddingHorizontal: 10,
     paddingTop: 10,
+  },
+  excerpt: {
+    height: 83,
+    overflow: 'hidden',
   },
 });
 
@@ -36,11 +41,16 @@ const BlogItem = ({ id, title, author, titleImage, excerpt, onPress }) => {
   return (
     <TouchableOpacity onPress={() => onPress(id)}>
       <View style={styles.container}>
-        <Image source={{ uri: titleImage }} style={styles.image} />
+        <Image
+          source={{ uri: titleImage || 'https://picsum.photos/320/180' }}
+          style={styles.image}
+        />
         <View style={styles.information}>
           <HTMLWrapper htmlContent={title.rendered} />
           <Text style={styles.author}>{`Author: ${author}`}</Text>
-          <HTMLWrapper htmlContent={excerpt.rendered} />
+          <View style={styles.excerpt}>
+            <HTMLWrapper htmlContent={excerpt.rendered} />
+          </View>
         </View>
       </View>
     </TouchableOpacity>

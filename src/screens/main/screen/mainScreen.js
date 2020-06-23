@@ -112,16 +112,28 @@ class BlogsScreen extends Component {
     super(props);
   }
 
+  async componentDidMount() {
+    await this.props.getBlogs();
+  }
+
   navigateToBlog = (id) => {
-    const { navigation } = this.props;
+    const { navigation, blogs } = this.props;
+
+    const blog = blogs.find((item) => item.id === id);
+
     navigation.navigate(ROUTES.SCREENS.BLOG, {
-      title: DATA[0].title,
-      htmlContent: DATA[0].content,
+      title: blog.title,
+      htmlContent: blog.content,
     });
   };
 
   render() {
-    return <BlogList onBlogSelect={this.navigateToBlog} blogsArray={DATA} />;
+    return (
+      <BlogList
+        onBlogSelect={this.navigateToBlog}
+        blogsArray={this.props.blogs}
+      />
+    );
   }
 }
 

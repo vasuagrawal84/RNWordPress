@@ -13,7 +13,6 @@ const validateUserEndpoint =
   'https://js1.10up.com/wp-json/jwt-auth/v1/token/validate';
 
 export const attemptLogin = (username, password, onSuccess) => {
-  console.warn('!!!aala');
   return async (dispatch, getState) => {
     dispatch({
       type: LOGIN_LOADING,
@@ -31,7 +30,6 @@ export const attemptLogin = (username, password, onSuccess) => {
 
       onSuccess();
     } catch (err) {
-      console.warn('err', err);
       dispatch({
         type: LOGIN_ERROR,
       });
@@ -47,7 +45,6 @@ export const verifyLogin = (onSuccess) => {
 
     try {
       const { username, password } = await SecureStorage.get(USER);
-      console.warn('user', password);
 
       await postRequest(
         validateUserEndpoint,
@@ -65,10 +62,17 @@ export const verifyLogin = (onSuccess) => {
 
       onSuccess();
     } catch (e) {
-      console.warn('!!response', e.response);
       dispatch({
         type: LOGIN_VERIFICATION_ERROR,
       });
     }
+  };
+};
+
+export const signOut = (onSuccess) => {
+  return async (dispatch, getState) => {
+    await SecureStorage.clear();
+
+    onSuccess();
   };
 };

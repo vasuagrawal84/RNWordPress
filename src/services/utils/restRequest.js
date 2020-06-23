@@ -5,5 +5,5 @@ export const postRequest = (endpoint, body = {}, options) => {
 };
 
 export const getRequest = (endpoint, queryParams = {}) => {
-  return axios.get('endpoint', { params: queryParams });
+  return axios.get(endpoint, { params: queryParams });
 };

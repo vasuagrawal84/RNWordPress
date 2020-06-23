@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MainScreen from '../screen/mainScreen';
+import PrivacyScreen from '../screen/privacyScreen';
 import { SafeAreaView } from 'react-native';
-import { getBlogs } from '../../../redux/actions/blogs';
 
-class MainContainer extends Component {
+class PrivacyContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,7 +12,7 @@ class MainContainer extends Component {
   render() {
     return (
       <SafeAreaView>
-        <MainScreen {...this.props} />
+        <PrivacyScreen {...this.props} />
       </SafeAreaView>
     );
   }
@@ -21,11 +20,10 @@ class MainContainer extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user.user,
-  blogs: state.blogs.blogs,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getBlogs: () => dispatch(getBlogs()),
+  downloadPrivacyPolicy: () => dispatch(getPrivacyPolicy()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PrivacyContainer);

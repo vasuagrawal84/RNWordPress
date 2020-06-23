@@ -1,16 +1,11 @@
 import { createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { default as ROUTES } from '../constants/routeNames';
-import { Home, Main, Blog } from '../screens';
+import { Home, Main, Blog, Settings, Privacy, About } from '../screens';
 
-const stackNavigatior = createStackNavigator(
+const blogsStack = createStackNavigator(
   {
-    [ROUTES.SCREENS.HOME]: {
-      screen: Home,
-      navigationOptions: {
-        header: () => null,
-      },
-    },
     [ROUTES.SCREENS.MAIN]: {
       screen: Main,
       navigationOptions: {
@@ -30,6 +25,33 @@ const stackNavigatior = createStackNavigator(
   },
 );
 
+const settingsStack = createStackNavigator({
+  [ROUTES.SCREENS.SETTINGS]: {
+    screen: Settings,
+    navigationOptions: {
+      header: () => null,
+    },
+  },
+  [ROUTES.SCREENS.BLOG]: {
+    screen: Blog,
+    navigationOptions: {
+      headerTitle: '10 Up Blogs!',
+      headerBackTitle: 'Back',
+    },
+  },
+});
+
+const tabNav = createBottomTabNavigator({
+  '10Up': { screen: blogsStack },
+  Settings: { screen: settingsStack },
+});
+
 export default createSwitchNavigator({
-  stackNavigatior,
+  [ROUTES.SCREENS.HOME]: {
+    screen: Home,
+    navigationOptions: {
+      header: () => null,
+    },
+  },
+  tabNav,
 });

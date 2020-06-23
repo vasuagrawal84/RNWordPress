@@ -1,18 +1,34 @@
-# React Application Exercise
+# React Native WordPress
 
-Your task is to create a maintainable React application using modern JavaScript and framework(s). The application is a blog pulling content from the API listed below based on some simple HTML/CSS markup; there is also basic login/logout functionality. All the necessary HTML and CSS are provided inside the `provided` directory as well as any information you need to complete the exercise.
+This is a iOS and Android application written using React Native to present blogs returned by the Wordpress API.
 
-Please use your best judgement for any decisions that need to be made about the implementation including potential starter files, modules, plugins, and libraries you feel are necessary to create the application. The goal of this exercise is to help us gauge your knowledge with modern JavaScript and React. As such, don’t worry about improving the provided HTML and CSS - that is not the focus of this exercise. We are very interested to see how you scaffold your application, follow React best practices, use modern JavaScript features (ES6-8), utilize build processes, implement a routing strategy, and handle state management. For authentication, we want to see how you handle the authentication flow (login and logout), store tokens, and handle expired tokens.
+To run:
 
-Please also track your time, our goal is to make these exercises thorough, but not overwhelming so getting your feedback very much helps the process. If the exercise is taking too long, feel free to stop and just show us what you have. If this project is a challenge or a struggle, just do your best.
+`yarn`
+`react-native run-android`
+OR 
+`yarn`
+`react-native run-ios`
 
-## Requirements
+## Features
+- Login/logout functionality with user session being saved between app restarts
+- List of blogs presented once user logs in
+- User can click on blogs to view them in full on a new screen
+- Any pages returned by the Pages API are shown on the settings tab
+- User can click and view these pages
 
-* Application utilizing the provided HTML/CSS and following the specifications. No server-side rendering is required, though we’d like the application built in such a way that server side rendering could be added in the future.
-* Modern JavaScript best practices.
-* No page reloads necessary.
-* Built using React.
-* Login/logout functionality using JSON Web Token authentication.
+- react-navigation - used for routing/navigation
+- react-native-render-html - used for rendering HTML
+- redux-thunk - state management with asyc actions which would help with server side rendering if needed (could have used sagas too)
+
+## Next steps
+- Add Typescipt 
+- Utilise selectors in redux
+- Use action creators to reduce duplication of network call code
+- Implement caching for network calls and handling token expiry
+- Unit tests (some scenarios have been outlined - need to implement)
+- Automated E2E tests - Using Appium or Detox
+- Set up a CI to verify, build and upload to test channels
 
 ## APIs
 

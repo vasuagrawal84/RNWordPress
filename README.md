@@ -17,6 +17,7 @@ OR
 - Any pages returned by the Pages API are shown on the settings tab
 - User can click and view these pages
 
+## Libs
 - react-navigation - used for routing/navigation
 - react-native-render-html - used for rendering HTML
 - redux-thunk - state management with asyc actions which would help with server side rendering if needed (could have used sagas too)
@@ -26,8 +27,8 @@ OR
 - Utilise selectors in redux
 - Use action creators to reduce duplication of network call code
 - Implement caching for network calls and handling token expiry
-- Unit tests (some scenarios have been outlined - need to implement)
-- Automated E2E tests - Using Appium or Detox
+- Unit tests - use jest, enzyme to create snapshot test and unit tests to test redux
+- Automated E2E tests - Could use Appium or Detox
 - Set up a CI to verify, build and upload to test channels
 
 ## APIs
